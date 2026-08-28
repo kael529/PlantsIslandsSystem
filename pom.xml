@@ -68,12 +68,14 @@
             <artifactId>jjwt-api</artifactId>       <!-- 编译期,写代码用的接口 -->
             <version>${jwt.version}</version>
         </dependency>
+
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-impl</artifactId>      <!-- 真正实现逻辑,runtime运行时才加载,没有它运行报错 -->
             <version>${jwt.version}</version>
             <scope>runtime</scope>
         </dependency>
+
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-jackson</artifactId>   <!-- JSON序列化,解析payload,必不可少 -->
