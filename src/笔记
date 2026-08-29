@@ -14,3 +14,9 @@ LocalDate	                 ✅推荐	                               存birthday 
     birthday：只存年月日 → 用 LocalDate
     create_time、update_time：存年月日时分秒 → 用 LocalDateTime
     BigDecimal 精确的十进制运算不会丢失精度所有金额、价格字段（必选）
+
+三、common、config、utils包的区别
+包名	         解释	             放什么	                                     依赖谁
+common	 “公共工具盒”	       整个项目都可能用到的东西	                 不依赖项目里的其他包,可以被任意包引用
+config	 “项目启动配置”	 Spring 容器启动时需要加载的配置类	                 被 Spring 启动类加载
+utils	 “纯工具函数”	  一些静态方法,帮你做某件事（比如 JWT 解析、加密）	 不依赖 Spring,只依赖 JDK 或第三方库

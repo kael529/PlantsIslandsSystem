@@ -1,21 +1,33 @@
 spring:
   application:
-    name: PlantsIslandsSystem
+    name: PlantsIslandsSystem   # 当前应用的名字
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/plantsislandsdb?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf-8
     username: root
     password: root
+  # driver-class-name ->使用 MySQL8 的驱动类
+  # localhost:3306 ->数据库在本机,端口是 3306
+  # plantsislandsdb ->数据库名称
+  # useSSL=false ->本地开发不需要 SSL 加密,关了连接更快
+  # serverTimezone=Asia/Shanghai ->指定时区,避免时间字段存到数据库时差 8小时
+  # characterEncoding=utf-8 ->让中文不乱码
   data:
-    redis:
+    redis:    # 配置 Redis 连接信息
       host: localhost
       port: 6379
       database: 0
 
 server:
-  port: 8080
+  port: 8080   # 后端服务启动后监听的端口
 
 mybatis-plus:
   configuration:
-    map-underscore-to-camel-case: true
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true    # 如自动将数据库的 user_id 映射成 Java 的 userId
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl    # 在控制台打印 MyBatis-Plus 生成的 SQL 语句
+  mapper-locations: classpath:mapper/*.xml    # 所有XML文件放在 resources/mapper/ 目录下
+  global-config:     # 全局统一逻辑删除配置
+    db-config:
+      logic-delete-field: deleted     # 所有实体类里叫 deleted 的字段,都会自动变成逻辑删除字段
+      logic-delete-value: 1           # 已删除的值,删除时自动变成 UPDATE ... SET deleted = 1
+      logic-not-delete-value: 0       # 未删除的值,查询时自动拼接 WHERE deleted = 0
