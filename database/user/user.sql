@@ -14,3 +14,7 @@ CREATE TABLE `user` (
     UNIQUE KEY `uk_no` (`no`),
     UNIQUE KEY `uk_phone` (`phone`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
+
+ALTER TABLE `user`
+ADD COLUMN `gender` tinyint DEFAULT 0 COMMENT '性别：0未知 1男 2女' AFTER `avatar`,
+ADD COLUMN `birthday` date DEFAULT NULL COMMENT '出生日期（系统自动更新年龄）' AFTER `gender`;

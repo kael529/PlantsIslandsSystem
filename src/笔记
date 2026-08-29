@@ -1,0 +1,16 @@
+一、什么叫实体类？
+    实体类（Entity）就是一张表在 Java 里的“映射照片”。表里有什么字段，类里就有什么属性。
+    表名用 @TableName 告诉它。主键用 @TableId 标记。软删除字段用 @TableLogic 标记。
+    MyBatis-Plus 看到这个类，就知道怎么把数据库里的数据“搬”到 Java 对象里。
+
+数据库 bigint 对应 Java 的 Long，范围更大，更安全
+
+二、日期类型到底该用哪个？
+    你的写法	                    问题	                              建议替换为	                                 理由
+java.util.Date	   它是“老款”日期，线程不安全，而且很多方法已废弃	    LocalDateTime	             JDK8官方推荐的日期时间API线程安全操作更灵活
+java.sql.Date	     只能存日期，不能存时间	                           ❌不推荐	                   不适合create_time、update_time场景
+LocalDateTime	             ✅推荐                          存create_time、update_time	               精确到秒支持时区线程安全
+LocalDate	                 ✅推荐	                               存birthday                       只存日期（年月日）不关心具体时间
+    birthday：只存年月日 → 用 LocalDate
+    create_time、update_time：存年月日时分秒 → 用 LocalDateTime
+    BigDecimal 精确的十进制运算不会丢失精度所有金额、价格字段（必选）
