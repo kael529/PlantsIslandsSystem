@@ -20,3 +20,18 @@ LocalDate	                 ✅推荐	                               存birthday 
 common	 “公共工具盒”	       整个项目都可能用到的东西	                 不依赖项目里的其他包,可以被任意包引用
 config	 “项目启动配置”	 Spring 容器启动时需要加载的配置类	                 被 Spring 启动类加载
 utils	 “纯工具函数”	  一些静态方法,帮你做某件事（比如 JWT 解析、加密）	 不依赖 Spring,只依赖 JDK 或第三方库
+
+四、Spring Boot 2.4+ 推荐的写法, .allowedOriginPatterns("*") 和 .allowedOrigins("*") 的区别是:
+    .allowedOrigins("*"): 不能和 .allowCredentials(true)一起用会报错
+    .allowedOriginPatterns("*"): 可以和 .allowCredentials(true)一起用,Spring内部做了兼容
+
+五、@RestControllerAdvice是干什么的? --> 所有Controller抛出来的异常,都先经过我处理,不要直接扔给前端
+    @RestControllerAdvice = @ControllerAdvice + @ResponseBody
+    意思是: 1.拦截所有Controller的异常（@ControllerAdvice）
+           2.返回的结果自动转成JSON（@ResponseBody）
+   越具体的异常,优先级越高
+
+六、为什么BusinessException要继承RuntimeException? --> 因为Spring只自动回滚RuntimeException及其子类的异常
+    --如果继承 Exception（受检异常）,Spring不会自动回滚事务
+    --而且必须在每个方法上写 throws BusinessException,很麻烦
+    --继承 RuntimeException,可以在任何地方直接 throw,不需要声明
