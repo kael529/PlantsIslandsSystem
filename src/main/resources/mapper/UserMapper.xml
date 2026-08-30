@@ -4,4 +4,34 @@
 
 <mapper namespace="com.zhiyu.plantsislandssystem.mapper.UserMapper">
 
+    <resultMap id="UserMap" type="com.zhiyu.plantsislandssystem.entity.User">
+        <id column="id" property="id"/>
+        <result column="no" property="no"/>
+        <result column="password" property="password"/>
+        <result column="phone" property="phone"/>
+        <result column="nickname" property="nickname"/>
+        <result column="avatar" property="avatar"/>
+        <result column="gender" property="gender"/>
+        <result column="birthday" property="birthday"/>
+        <result column="role" property="role"/>
+        <result column="status" property="status"/>
+        <result column="deleted" property="deleted"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <!-- 手机号查用户 -->
+    <select id="selectUserByPhone" resultMap="UserMap">
+        select * from user where phone = #{phone} and deleted = 0;
+    </select>
+
+    <!-- 账号查用户 -->
+    <select id="selectUserByNo" resultMap="UserMap">
+        select * from user where no = #{no} and deleted = 0;
+    </select>
+
+    <!-- 统计手机号出现次数 -->
+    <select id="countUserByPhone" resultType="int">
+        select count(*) from user where phone = #{phone} and deleted = 0;
+    </select>
 </mapper>

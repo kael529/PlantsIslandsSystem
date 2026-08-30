@@ -31,3 +31,10 @@ mybatis-plus:
       logic-delete-field: deleted     # 所有实体类里叫 deleted 的字段,都会自动变成逻辑删除字段
       logic-delete-value: 1           # 已删除的值,删除时自动变成 UPDATE ... SET deleted = 1
       logic-not-delete-value: 0       # 未删除的值,查询时自动拼接 WHERE deleted = 0
+
+# JWT 配置
+jwt:
+  secret: "PlantsIslandsSystemSecretKey2026!@#$%"   # 密钥: JWT加密用的"密码本",至少 32 位
+  expire-minutes: 10080     # 过期时间: 10080分钟 = 7天,7天后 Token 自动失效,用户要重新登录
+  header: Authorization     # 请求头名称: 前端要把 Token 放在这个 Header 里传过来
+  prefix: "Bearer "         # 前缀: 标准的 JWT 格式要求 -> Header里写 Authorization: Bearer xxx,只取 xxx 部分

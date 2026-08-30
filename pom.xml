@@ -90,6 +90,13 @@
             <optional>true</optional>
         </dependency>
 
+        <!-- Spring Security Crypto 依赖配置 -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-crypto</artifactId>
+            <version>6.1.5</version>
+        </dependency>
+
         <!-- 测试（包含了 validation、redis 等测试支持） -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

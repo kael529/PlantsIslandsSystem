@@ -35,3 +35,15 @@ utils	 “纯工具函数”	  一些静态方法,帮你做某件事（比如 JW
     --如果继承 Exception（受检异常）,Spring不会自动回滚事务
     --而且必须在每个方法上写 throws BusinessException,很麻烦
     --继承 RuntimeException,可以在任何地方直接 throw,不需要声明
+
+--JwtUtils --> 生成、解析、验证 JWT 的工具类
+--JwtInterceptor --> 在每个请求到达 Controller 前检查 Token
+--WebConfig --> 告诉 Spring 哪些接口需要拦截、哪些不需要
+--application.yml 存密钥 --> 安全、灵活、不用改代码
+
+七、写实现类的方法
+    1. 接收参数（Controller 传过来的 DTO）
+    2. 做校验（数据对不对？符不符合规则？）
+    3. 做处理（加密、生成ID、组装对象...）
+    4. 存数据库（调用 Mapper）
+    5. 返回结果（如果有的话）
