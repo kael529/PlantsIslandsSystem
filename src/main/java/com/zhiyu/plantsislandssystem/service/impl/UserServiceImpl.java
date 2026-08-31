@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
         String loginKey = loginDTO.getLoginKey();
         //1.检查用户存不存在
         User user = null;
-        if (loginKey.matches("^1[3-9]\\\\d{9}$")){
+        if (loginKey.matches("^1[3-9]\\d{9}$")){
             user = userMapper.selectUserByPhone(loginKey);
         }else {
             user = userMapper.selectUserByNo(loginKey);
