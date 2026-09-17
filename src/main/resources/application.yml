@@ -17,6 +17,10 @@ spring:
       host: localhost
       port: 6379
       database: 0
+  servlet:
+    multipart:
+      max-file-size: 10MB        # 单个文最大
+      max-request-size: 20MB     # 整个请求最大
 
 server:
   port: 8080   # 后端服务启动后监听的端口
@@ -38,3 +42,6 @@ jwt:
   expire-minutes: 10080     # 过期时间: 10080分钟 = 7天,7天后 Token 自动失效,用户要重新登录
   header: Authorization     # 请求头名称: 前端要把 Token 放在这个 Header 里传过来
   prefix: "Bearer "         # 前缀: 标准的 JWT 格式要求 -> Header里写 Authorization: Bearer xxx,只取 xxx 部分
+
+fastapi:
+  url: http://localhost:8000/recognize

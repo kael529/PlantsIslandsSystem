@@ -30,9 +30,11 @@ public class WebConfig implements WebMvcConfigurer {
                 .addPathPatterns("/**")
                 // 排除不需要JWT认证的路径，包括用户登录、注册和测试相关接口
                 .excludePathPatterns(
-                        "/user/login",    // 用户登录接口
-                        "/user/register", // 用户注册接口
-                        "/test/**"        // 所有测试相关接口
+                        "/user/login",         // 用户登录接口
+                        "/user/register",     // 用户注册接口
+                        "/test/**",          // 所有测试相关接口
+                        "/recognition/**"   // 放行植物识别接口
+
                 );
     }
 }
